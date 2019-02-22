@@ -8,11 +8,14 @@ public class PlayerAnimation : MonoBehaviour
     private Animator animator;
     private const string key_walk = "Walking";
     private const string key_jump = "Jumping";
+    Rigidbody2D rigit2D;
+    float jumpPower = 200.0f;
 
     // Use this for initialization
     void Start()
     {
         this.animator = GetComponent<Animator>();
+        this.rigit2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         else if (Input.GetKey("space")) {
             this.animator.SetBool(key_jump, true);
+            rigit2D.AddForce(transform.up * jumpPower);
         }
         else {
             this.animator.SetBool(key_walk, false);
