@@ -68,6 +68,8 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
     <Compile Include="Assets\Script\PlayerAnimation.cs" />
+    <Compile Include="Assets\Script\PlayerController.cs" />
+    <Compile Include="Assets\Script\PlayerState.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\AudioSourceController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\BlockController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\BrokenBlockController.cs" />
