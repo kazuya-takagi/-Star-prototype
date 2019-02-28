@@ -61,7 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\PlayerAnimation.cs" />
+    <Compile Include="Assets\Script\PlayerScript.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\AudioSourceController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\BlockController.cs" />
     <Compile Include="Assets\UnityChan2D\Demo\Scripts\BrokenBlockController.cs" />

@@ -245,7 +245,8 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6423053b713011f468cd236d4ecdfe24, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1403115489 stripped
@@ -264,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c83b60035ae7604fb1671d76d1c9716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrow: {fileID: 1087716980804760, guid: 2d576522a97f5954b9ddb0482774a9e6, type: 2}
+  bow: {fileID: 1481103703383384, guid: d89eb916897de44488ec8fbdcdd04017, type: 2}
 --- !u!1 &1731223834
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +375,10 @@ Prefab:
     - target: {fileID: 400000, guid: 16fb769c0394c36469ed40a4f35c1eec, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 16fb769c0394c36469ed40a4f35c1eec, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16fb769c0394c36469ed40a4f35c1eec, type: 3}
