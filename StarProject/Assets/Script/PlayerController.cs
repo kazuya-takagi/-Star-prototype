@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float playerSpeed = 1.0f;
 
-    private Rigidbody rigidbody;
-    private Rigidbody2D rigidbody2D;
+    private new Rigidbody rigidbody;
+    private new Rigidbody2D rigidbody2D;
     [SerializeField]
     private bool isGround = true;
 
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Jump() {
         //プレイヤーのy方向の速度が０の場合地面にいると判定
-        isGround = Mathf.Abs(rigidbody2D.velocity.y) > 0 ? false : true;
+        isGround = Mathf.Abs(rigidbody2D.velocity.y) > 0.1 ? false : true;
         //地面にいるときにスペースキーでジャンプ
         if (Input.GetKeyDown(KeyCode.Space) && isGround) {
             rigidbody2D.AddForce(new Vector2(0,1000));
