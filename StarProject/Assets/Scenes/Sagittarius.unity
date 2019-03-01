@@ -245,7 +245,8 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6423053b713011f468cd236d4ecdfe24, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1403115489 stripped
@@ -264,6 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c83b60035ae7604fb1671d76d1c9716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrow: {fileID: 1978565178724056, guid: 73986a2283f83914bb10c8979117ba5b, type: 2}
+  bow: {fileID: 114735173767926030, guid: e7d7b9ec78828484b866a15800e2100a, type: 2}
+  key: 0
 --- !u!1 &1731223834
 GameObject:
   m_ObjectHideFlags: 0
