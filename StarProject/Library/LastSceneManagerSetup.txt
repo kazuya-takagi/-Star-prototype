@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Virgo.unity
+- path: Assets/Scenes/Sagittarius.unity
   isLoaded: 1
   isActive: 1
