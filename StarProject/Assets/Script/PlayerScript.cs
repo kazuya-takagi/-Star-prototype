@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
 
     private Animator animator;
-    Rigidbody2D rigit2D;
+    Rigidbody rigit;
 
     public GameObject arrow;    //弓矢用のオブジェクトを指定します。
     public ArrowScript bow;      //弓用のオブジェクトを指定します。
@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     GameObject insArrow;        //生成後の弓矢オブジェクト
     ArrowScript insBow;          //生成後の弓オブジェクト
 
-    float jumpPower = 1000.0f;  //ジャンプ力
+    float jumpPower = 500.0f;  //ジャンプ力
     float speed = 10.0f;        //移動速度
     bool jump;                  //接地判定用
     bool insCtrl = true;        //インスタンス化の連続処理防止用
@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         this.animator = GetComponent<Animator>();       //Animatorのコンポネート
-        this.rigit2D = GetComponent<Rigidbody2D>();     //RigidBodyのコンポネート
+        this.rigit = GetComponent<Rigidbody>();     //RigidBodyのコンポネート
 
     }
 
@@ -57,7 +57,7 @@ public class PlayerScript : MonoBehaviour
         //ジャンプ
         if (Input.GetKey(KeyCode.Space) && !jump) {
             this.animator.SetBool(key_jump, true);
-            rigit2D.AddForce(transform.up * jumpPower);
+            rigit.AddForce(transform.up * jumpPower);
             jump = true;
         }
 
@@ -87,7 +87,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter(Collision other)
     {
         jump = false;
     }
