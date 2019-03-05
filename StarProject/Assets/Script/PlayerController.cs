@@ -9,13 +9,23 @@ public class PlayerController : MonoBehaviour {
     private PlayerModeState playerModeState;
 
     [SerializeField]
-    private float playerSpeed = 1.0f;
-
-    private new Rigidbody rigidbody;
-    private new Rigidbody2D rigidbody2D;
+    private float jumpForce = 500; //jump力
     [SerializeField]
-    private bool isGround = true;
+    private float playerSpeed = 1.0f;//スピード
 
+    public new Rigidbody rigidbody;//playerのrigidbody
+
+    [SerializeField]
+    private bool isGround = true;//接地判定
+    [SerializeField]
+    private KeyCode actionKey = KeyCode.Q;//action用Keyの設定
+
+    [SerializeField]
+    private Vector3 velocity;
+    [SerializeField]
+    private Transform rayStart;
+    [SerializeField]
+    private float rayRange;
     public enum PlayerState {
         Start,
         Idle,
@@ -25,9 +35,8 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerState = PlayerState.Idle;
-        //rigidbody = transform.GetComponent<Rigidbody>();
-        rigidbody2D = transform.GetComponent<Rigidbody2D>();
-       
+        rigidbody = this.transform.GetComponent<Rigidbody>();
+        velocity = Vector3.zero;
     }
 	
 	// Update is called once per frame
@@ -38,12 +47,15 @@ public class PlayerController : MonoBehaviour {
 
                 break;
             case PlayerState.Idle:
+                IsGroundCheck();
                 if (playerModeState != null) {
                     playerModeState.UpDate();
                     PlayActionBotton();
                 }
+
                 PlayerMove();
                 Jump();
+
                 break;
             case PlayerState.End:
 
@@ -53,34 +65,64 @@ public class PlayerController : MonoBehaviour {
 	}
 
     private void PlayActionBotton() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+
+        if (Input.GetKeyDown(actionKey)) {
             playerModeState.ActionBottonDown();
         }
-        if (Input.GetKey(KeyCode.Q)) {
+
+        if (Input.GetKey(actionKey)) {
             playerModeState.ActionBotton();
         }
-        if (Input.GetKeyUp(KeyCode.Q)) {
+
+        if (Input.GetKeyUp(actionKey)) {
             playerModeState.ActionBottonUp();
         }
     }
 
     private void PlayerMove() {
-        float moveX = Input.GetAxis("Horizontal");
         
-        //rigidbody.velocity = new Vector3(moveX * playerSpeed, rigidbody.velocity.y, 0);
 
-        rigidbody2D.velocity = new Vector2(moveX * playerSpeed, rigidbody2D.velocity.y);
+        if (isGround) {
+            velocity = Vector3.zero;
+            float moveX = Input.GetAxis("Horizontal");
+            velocity.x = moveX * playerSpeed * Time.deltaTime;
+            // rigidbody.velocity = new Vector3(moveX * playerSpeed, rigidbody.velocity.y, 0);
+            if(moveX > 0) {
+                transform.localEulerAngles = new Vector3(0, 90, 0);
+               
+            }
+            else if(moveX < 0) {
+                transform.localEulerAngles = new Vector3(0, -90, 0);
+                
+            }
+        }
+
+        transform.position += velocity;
     }
 
     private void Jump() {
+
         //プレイヤーのy方向の速度が０の場合地面にいると判定
-        isGround = Mathf.Abs(rigidbody2D.velocity.y) > 0.1 ? false : true;
-        //地面にいるときにスペースキーでジャンプ
+        //isGround = Mathf.Abs(Mathf.Round( rigidbody.velocity.y)) > 0 ? false : true;
+        //接地時スペースキーでジャンプ
+
         if (Input.GetKeyDown(KeyCode.Space) && isGround) {
-            rigidbody2D.AddForce(new Vector2(0,1000));
+            rigidbody.AddForce(new Vector3(0,500,0));
         }
-       
+
+    }
+
+    private void IsGroundCheck() {
         
+
+        if(Physics.Linecast(rayStart.position, (rayStart.position - transform.up * rayRange))) {
+            isGround = true;
+        }
+        else {
+            isGround = false;
+        }
+
+        Debug.DrawLine(rayStart.position, (rayStart.position - transform.up * rayRange), Color.red);
     }
 
     private void ChangePlayerMode(PlayerModeState newState) {
