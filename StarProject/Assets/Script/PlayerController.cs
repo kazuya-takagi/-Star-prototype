@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    PlayerState playerState;
+    public PlayerState playerState;
 
     private PlayerModeState playerModeState;
 
@@ -21,32 +21,43 @@ public class PlayerController : MonoBehaviour {
     private KeyCode actionKey = KeyCode.Q;//action用Keyの設定
 
     [SerializeField]
-    private Vector3 velocity;
+    private Vector3 velocity;//移動値
     [SerializeField]
-    private Transform rayStart;
+    private Transform rayStart;//rayスタート位置
     [SerializeField]
-    private float rayRange;
+    private float rayRange;//rayの長さ
+
+    public GameObject mainCamera;
+    private Vector3 cameraPosi;//cameraのposision
+    public float cameraDistanceZ = -5;//cameraの距離
+
+    public GameObject hitPlayerObject;//playerに触れているobject
+
     public enum PlayerState {
         Start,
+        Move,
+        Mode,
         Idle,
         End
     }
 
 	// Use this for initialization
 	void Start () {
-        playerState = PlayerState.Idle;
+        playerState = PlayerState.Move;
         rigidbody = this.transform.GetComponent<Rigidbody>();
         velocity = Vector3.zero;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        UpdateCameraPosi();
+
         switch (playerState) {
 
             case PlayerState.Start:
 
                 break;
-            case PlayerState.Idle:
+            case PlayerState.Move:
                 IsGroundCheck();
                 if (playerModeState != null) {
                     playerModeState.UpDate();
@@ -55,6 +66,17 @@ public class PlayerController : MonoBehaviour {
 
                 PlayerMove();
                 Jump();
+                CatchObject();
+                break;
+            case PlayerState.Mode:
+                if (playerModeState != null) {
+                    playerModeState.UpDate();
+                    PlayActionBotton();
+                }
+
+
+                break;
+            case PlayerState.Idle:
 
                 break;
             case PlayerState.End:
@@ -62,7 +84,15 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
 
-	}
+    }
+
+    private void UpdateCameraPosi() {
+        cameraPosi = transform.position;
+        cameraPosi.z = cameraDistanceZ;
+        cameraPosi.y +=  2;
+
+        mainCamera.transform.position = cameraPosi;
+    }
 
     private void PlayActionBotton() {
 
@@ -86,7 +116,7 @@ public class PlayerController : MonoBehaviour {
             velocity = Vector3.zero;
             float moveX = Input.GetAxis("Horizontal");
             velocity.x = moveX * playerSpeed * Time.deltaTime;
-            // rigidbody.velocity = new Vector3(moveX * playerSpeed, rigidbody.velocity.y, 0);
+
             if(moveX > 0) {
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                
@@ -114,7 +144,7 @@ public class PlayerController : MonoBehaviour {
 
     private void IsGroundCheck() {
         
-
+        
         if(Physics.Linecast(rayStart.position, (rayStart.position - transform.up * rayRange))) {
             isGround = true;
         }
@@ -134,5 +164,31 @@ public class PlayerController : MonoBehaviour {
         playerModeState = newState;
         //ステート開始時の動作を開始
         playerModeState.Start();
+    }
+
+    private void CatchObject() {
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            if(hitPlayerObject != null) {
+                hitPlayerObject.transform.parent = this.transform;
+            }
+        }
+        else {
+            if (hitPlayerObject != null) {
+                hitPlayerObject.transform.parent = null;
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "") {
+            if(hitPlayerObject == null) {
+                hitPlayerObject = other.gameObject;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(hitPlayerObject == other) {
+            hitPlayerObject = null;
+        }
     }
 }
