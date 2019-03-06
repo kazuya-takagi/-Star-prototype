@@ -9,15 +9,15 @@ public class Playerpower : MonoBehaviour {
 	private void OnTriggerEnter(Collider other)
     {
 		if(other.gameObject.tag == "UnityChan2D") {
-            GameObject handgrip = transform.FindChild("Cube").gameObject;
+            GameObject handgrip = transform.Find("Cube").gameObject;
 
-                Cube.transform.Rotate(0, 180, 0);
+                //Cube.transform.Rotate(0, 180, 0);
 
-            Cube.transform.Translate(0, -1, 0);
+            //Cube.transform.Translate(0, -1, 0);
 
-            Cube.transform.parent = handgrip.transform;
+            //Cube.transform.parent = handgrip.transform;
 
-            bulletruncher.GetCube();
+            //bulletruncher.GetCube();
         }
 	}
 

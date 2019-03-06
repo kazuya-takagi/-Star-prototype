@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModeState  {
+public class PlayerModeState {
 
-    PlayerController playerController;
+    protected PlayerController playerController;
 
-	PlayerModeState(PlayerController playerController) {
-        this.playerController = playerController;   
+    protected PlayerModeState(PlayerController playerController) {
+        this.playerController = playerController;
     }
 
     public virtual void Start() {
