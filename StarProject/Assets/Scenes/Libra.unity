@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 153159240}
   - component: {fileID: 153159239}
   - component: {fileID: 153159238}
-  - component: {fileID: 153159242}
   m_Layer: 0
   m_Name: AssistFairy
   m_TagString: Untagged
@@ -215,22 +214,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153159236}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &153159242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 153159236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a9daaa9b239ca4f9e77c97edb5bae6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2116046183}
-  fairyPosi: {x: 0, y: 0, z: 0}
-  distanceX: -1
-  distanceY: 1
-  distanceZ: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +755,11 @@ MonoBehaviour:
   mainCamera: {fileID: 534669902}
   cameraDistanceZ: -10
   hitPlayerObject: {fileID: 0}
+  fairy: {fileID: 153159236}
+  fairyPosi: {x: 0, y: 0, z: 0}
+  distanceX: -1
+  distanceY: 1
+  distanceZ: 0
 --- !u!136 &2116046187
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -800,3 +788,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 88
   m_CollisionDetection: 0
+--- !u!114 &2116046189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116046183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277ba7935328f8747b9e0d21f9ec9734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 2116046184}
