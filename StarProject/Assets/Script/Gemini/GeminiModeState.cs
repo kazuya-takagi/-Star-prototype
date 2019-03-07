@@ -26,7 +26,7 @@ public class GeminiModeState : PlayerModeState {
 
             if (Input.GetKeyDown(KeyCode.LeftShift)) {
                 CloneObject(nearPlayerObjectColliders[selectCopyObjectNum].gameObject);
-                ActionBottonDown();
+                ActionButtonDown();
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
@@ -48,7 +48,7 @@ public class GeminiModeState : PlayerModeState {
         
     }
 
-    public override void ActionBottonDown() {
+    public override void ActionButtonDown() {
 
         geminiAction = !geminiAction;
 

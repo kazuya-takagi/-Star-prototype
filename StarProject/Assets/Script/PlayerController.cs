@@ -33,6 +33,13 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject hitPlayerObject;//playerに触れているobject
 
+    public GameObject fairy;//AssistFairyの指定
+    public Vector3 fairyPosi;//AssistFairyの座標
+    //playerとAssistFairyの距離
+    public float distanceX;
+    public float distanceY;
+    public float distanceZ;
+
     public enum PlayerState {
         Start,
         Move,
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
         playerState = PlayerState.Move;
         rigidbody = this.transform.GetComponent<Rigidbody>();
         velocity = Vector3.zero;
@@ -51,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         UpdateCameraPosi();
+        UpdateFairyPosi();
 
         switch (playerState) {
 
@@ -97,15 +106,15 @@ public class PlayerController : MonoBehaviour {
     private void PlayActionBotton() {
 
         if (Input.GetKeyDown(actionKey)) {
-            playerModeState.ActionBottonDown();
+            playerModeState.ActionButtonDown();
         }
 
         if (Input.GetKey(actionKey)) {
-            playerModeState.ActionBotton();
+            playerModeState.ActionButton();
         }
 
         if (Input.GetKeyUp(actionKey)) {
-            playerModeState.ActionBottonUp();
+            playerModeState.ActionButtonUp();
         }
     }
 
@@ -155,7 +164,7 @@ public class PlayerController : MonoBehaviour {
         Debug.DrawLine(rayStart.position, (rayStart.position - transform.up * rayRange), Color.red);
     }
 
-    private void ChangePlayerMode(PlayerModeState newState) {
+    public void ChangePlayerMode(PlayerModeState newState) {
         if(playerModeState != null) {
             //ステート終了時の動作を開始
             playerModeState.Exsit();
@@ -190,5 +199,17 @@ public class PlayerController : MonoBehaviour {
         if(hitPlayerObject == other) {
             hitPlayerObject = null;
         }
+    }
+
+
+    // AssistFairy の追従設定
+    private void UpdateFairyPosi()
+    {
+        fairyPosi = transform.position;
+        fairyPosi.x += distanceX;
+        fairyPosi.y += distanceY;
+        fairyPosi.z += distanceZ;
+
+        fairy.transform.position = fairyPosi;
     }
 }

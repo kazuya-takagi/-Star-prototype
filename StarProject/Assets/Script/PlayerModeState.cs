@@ -22,15 +22,15 @@ public class PlayerModeState {
 
     }
 
-    public virtual void ActionBottonDown() {
+    public virtual void ActionButtonDown() {
 
     }
 
-    public virtual void ActionBotton() {
+    public virtual void ActionButton() {
 
     }
 
-    public virtual void ActionBottonUp() {
+    public virtual void ActionButtonUp() {
 
     }
 }
