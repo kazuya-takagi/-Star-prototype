@@ -14,7 +14,7 @@ public class PlayerMove: MonoBehaviour
     GameObject insArrow;        //生成後の弓矢オブジェクト
     ArrowScript insBow;         //生成後の弓オブジェクト
 
-    float jumpPower = 500.0f;   //ジャンプ力
+    float jumpPower = 420.0f;   //ジャンプ力
     float speed = 10.0f;        //移動速度
     bool jump;                  //接地判定用
     bool insCtrl = true;        //インスタンス化の連続処理防止用
