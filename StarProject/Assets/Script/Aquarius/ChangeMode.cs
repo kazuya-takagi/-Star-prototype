@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace StarProject.Aquarius
 {
-
     public class ChangeMode : MonoBehaviour
     {
 
