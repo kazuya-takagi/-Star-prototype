@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 287187742}
   - component: {fileID: 287187741}
   m_Layer: 8
-  m_Name: SwitchCrysta5
+  m_Name: SwitchCrystal5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5134,6 +5134,56 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 788727963}
   m_Mesh: {fileID: 4300000, guid: 78ffc1ed5f72076498d0614872cf48ec, type: 3}
+--- !u!1 &801275965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801275966}
+  - component: {fileID: 801275967}
+  m_Layer: 8
+  m_Name: RotateSwitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &801275966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801275965}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 180, y: 10, z: 3.8}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children:
+  - {fileID: 1897269918}
+  - {fileID: 996252377}
+  - {fileID: 962539894}
+  - {fileID: 2025131153}
+  m_Father: {fileID: 1886724082}
+  m_RootOrder: 70
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &801275967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 801275965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32759cea72c3c6342bc475d667223023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSwitch: {fileID: 0}
+  gimmikObject: {fileID: 743791270}
+  gimmikObject2: {fileID: 1301108849}
+  target_rotate: 0
+  target_rotate2: 0
+  test: 0
 --- !u!4 &820387523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4ab39fc78d0761c49a5547a209481a36,
@@ -5988,11 +6038,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 962539893}
   m_LocalRotation: {x: 0.000000119209275, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 180, y: 10, z: 4}
-  m_LocalScale: {x: 0.19999999, y: 1, z: 0.19999999}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4000001}
+  m_LocalScale: {x: 0.39999998, y: 2, z: 0.39999998}
   m_Children: []
-  m_Father: {fileID: 1886724082}
-  m_RootOrder: 71
+  m_Father: {fileID: 801275966}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &962539895
 BoxCollider:
@@ -6133,7 +6183,7 @@ GameObject:
   - component: {fileID: 996252379}
   - component: {fileID: 996252378}
   m_Layer: 8
-  m_Name: SwitchCrysta7
+  m_Name: SwitchCrystal7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6147,13 +6197,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 996252376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 180, y: 14, z: 3.8}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1791876124}
   - {fileID: 635159030}
-  m_Father: {fileID: 1886724082}
-  m_RootOrder: 72
+  m_Father: {fileID: 801275966}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &996252378
 MonoBehaviour:
@@ -6166,10 +6216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b1357678bae084db62e74a8e873950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   mat:
   - {fileID: 2100000, guid: 5737b2a2145f48246a0d68aca5630fd1, type: 2}
   - {fileID: 2100000, guid: c6e18e7c3a9e23d428e61bfad6ba7d3a, type: 2}
-  - {fileID: 2100000, guid: e4c20deb24b9b2941a1757f122edbf3d, type: 2}
+  - {fileID: 2100000, guid: 8a63bbbf86c4d7545b8e3a680862d24c, type: 2}
   - {fileID: 2100000, guid: fa69f72f41417854cab1c22d84581efd, type: 2}
   matObject:
   - {fileID: 1301910481}
@@ -6179,9 +6230,6 @@ MonoBehaviour:
   - {fileID: 854748686}
   - {fileID: 1660104524}
   - {fileID: 1657241994}
-  gimmikObject: {fileID: 1301108849}
-  gimState: 0
-  target_rotate: -90
 --- !u!54 &996252379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6903,7 +6951,7 @@ GameObject:
   - component: {fileID: 1194650226}
   - component: {fileID: 1194650225}
   m_Layer: 8
-  m_Name: SwitchCrysta4
+  m_Name: SwitchCrystal4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9856,10 +9904,7 @@ Transform:
   - {fileID: 1123868385}
   - {fileID: 1463221745}
   - {fileID: 2106461419}
-  - {fileID: 1897269918}
-  - {fileID: 962539894}
-  - {fileID: 996252377}
-  - {fileID: 2025131153}
+  - {fileID: 801275966}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9913,7 +9958,7 @@ GameObject:
   - component: {fileID: 1897269920}
   - component: {fileID: 1897269919}
   m_Layer: 8
-  m_Name: SwitchCrysta6
+  m_Name: SwitchCrystal6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9927,13 +9972,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1897269917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 180, y: 10, z: 3.8}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1453282159}
   - {fileID: 2090748682}
-  m_Father: {fileID: 1886724082}
-  m_RootOrder: 70
+  m_Father: {fileID: 801275966}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1897269919
 MonoBehaviour:
@@ -9949,7 +9994,7 @@ MonoBehaviour:
   mat:
   - {fileID: 2100000, guid: 5737b2a2145f48246a0d68aca5630fd1, type: 2}
   - {fileID: 2100000, guid: c6e18e7c3a9e23d428e61bfad6ba7d3a, type: 2}
-  - {fileID: 2100000, guid: a50e1b06babb4e64b861e9e6bc5a33ad, type: 2}
+  - {fileID: 2100000, guid: 8a63bbbf86c4d7545b8e3a680862d24c, type: 2}
   - {fileID: 2100000, guid: fa69f72f41417854cab1c22d84581efd, type: 2}
   matObject:
   - {fileID: 1633183077}
@@ -9959,9 +10004,6 @@ MonoBehaviour:
   - {fileID: 91180877}
   - {fileID: 1174084126}
   - {fileID: 746886646}
-  gimmikObject: {fileID: 743791270}
-  gimState: 0
-  target_rotate: 180
 --- !u!54 &1897269920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10417,7 +10459,7 @@ GameObject:
   - component: {fileID: 1960632105}
   - component: {fileID: 1960632107}
   m_Layer: 8
-  m_Name: SwitchCrysta3
+  m_Name: SwitchCrystal3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10834,11 +10876,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2025131152}
   m_LocalRotation: {x: 0.000000119209275, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 180, y: 14, z: 4}
-  m_LocalScale: {x: 0.19999999, y: 1, z: 0.19999999}
+  m_LocalPosition: {x: 0, y: 8, z: 0.4000001}
+  m_LocalScale: {x: 0.39999998, y: 2, z: 0.39999998}
   m_Children: []
-  m_Father: {fileID: 1886724082}
-  m_RootOrder: 73
+  m_Father: {fileID: 801275966}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2025131154
 BoxCollider:
