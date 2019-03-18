@@ -10,10 +10,11 @@ public class GeminiModeState : PlayerModeState {
 
     private bool geminiAction;
     private Collider[] nearPlayerObjectColliders;
-    private LayerMask copyObject;
+    private LayerMask copyObjects;
     private int selectCopyObjectNum;
 
     public override void Start() {
+        copyObjects = LayerMask.GetMask("Player", "CopyObject");
         geminiAction = false;
         selectCopyObjectNum = 0;
     }
@@ -54,7 +55,9 @@ public class GeminiModeState : PlayerModeState {
 
         if (geminiAction) {
             playerController.playerState = PlayerController.PlayerState.Mode;
-            nearPlayerObjectColliders = Physics.OverlapBox(playerController.transform.position, new Vector3(10,10,10), new Quaternion(), copyObject);
+            nearPlayerObjectColliders = Physics.OverlapBox(playerController.transform.position, new Vector3(10,10,10), new Quaternion(), copyObjects);
+            Debug.Log(nearPlayerObjectColliders[0]);
+            Debug.Log(nearPlayerObjectColliders[1]);
         }
         else {
             playerController.playerState = PlayerController.PlayerState.Move;
