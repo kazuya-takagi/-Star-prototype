@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LibraModeState : PlayerModeState {
 
-    //public GameObject fairyBody;
+    public GameObject fairy;
     
 
     public LibraModeState(PlayerController playerController) : base(playerController)
@@ -21,18 +21,18 @@ public class LibraModeState : PlayerModeState {
     }
     public override void ActionButton()
     {
-        //fairyBody.GetComponent<Rigidbody>().useGravity = true;
+        
         //playerController.fairy.GetComponent<Rigidbody>().useGravity = true;
     }
 
     public override void ActionButtonDown()
     {
-        
+        fairy.GetComponent<Rigidbody>().useGravity = true;
     }
 
     public override void ActionButtonUp()
     {
-        
+        fairy.GetComponent<Rigidbody>().useGravity = false;
     }
     
 }
