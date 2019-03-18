@@ -33,13 +33,6 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject hitPlayerObject;//playerに触れているobject
 
-    public GameObject fairy;//AssistFairyの指定
-    public Vector3 fairyPosi;//AssistFairyの座標
-    //playerとAssistFairyの距離
-    public float distanceX;
-    public float distanceY;
-    public float distanceZ;
-
     public enum PlayerState {
         Start,
         Move,
@@ -48,18 +41,17 @@ public class PlayerController : MonoBehaviour {
         End
     }
 
-	// Use this for initialization
-	void Start () {
-        
+    // Use this for initialization
+    void Start() {
+
         playerState = PlayerState.Move;
         rigidbody = this.transform.GetComponent<Rigidbody>();
         velocity = Vector3.zero;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         UpdateCameraPosi();
-        UpdateFairyPosi();
 
         switch (playerState) {
 
@@ -98,7 +90,7 @@ public class PlayerController : MonoBehaviour {
     private void UpdateCameraPosi() {
         cameraPosi = transform.position;
         cameraPosi.z = cameraDistanceZ;
-        cameraPosi.y +=  2;
+        cameraPosi.y += 2;
 
         mainCamera.transform.position = cameraPosi;
     }
@@ -119,24 +111,43 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerMove() {
-        
+
+        float moveX = Input.GetAxis("Horizontal");
+        //velocity = Vector3.zero;
+        //velocity.y = rigidbody.velocity.y;
+        if (moveX > 0) {
+            transform.localEulerAngles = new Vector3(0, 90, 0);
+
+        }
+        else if (moveX < 0) {
+            transform.localEulerAngles = new Vector3(0, -90, 0);
+        }
 
         if (isGround) {
             velocity = Vector3.zero;
-            float moveX = Input.GetAxis("Horizontal");
+            //velocity.x = 0f;
             velocity.x = moveX * playerSpeed * Time.deltaTime;
 
-            if(moveX > 0) {
-                transform.localEulerAngles = new Vector3(0, 90, 0);
-               
+            //velocity.x = moveX * playerSpeed;
+        }
+        else {
+            
+            velocity.x += moveX * 0.01f;
+            if (velocity.x > playerSpeed * Time.deltaTime) {
+                velocity.x = playerSpeed * Time.deltaTime;
             }
-            else if(moveX < 0) {
-                transform.localEulerAngles = new Vector3(0, -90, 0);
-                
+            else if (velocity.x < -playerSpeed * Time.deltaTime) {
+                velocity.x = -playerSpeed * Time.deltaTime;
             }
+            //velocity.x = moveX * playerSpeed * 0.5f;
         }
 
-        transform.position += velocity;
+         transform.position += velocity;
+        //if (Mathf.Abs(rigidbody.velocity.x) < 10) {
+        //    rigidbody.AddForce(velocity);
+        //}
+
+       // rigidbody.velocity = velocity;
     }
 
     private void Jump() {
@@ -146,15 +157,17 @@ public class PlayerController : MonoBehaviour {
         //接地時スペースキーでジャンプ
 
         if (Input.GetKeyDown(KeyCode.Space) && isGround) {
-            rigidbody.AddForce(new Vector3(0,500,0));
+            // rigidbody.AddForce(new Vector3(0, jumpForce, 0));
+            velocity.y = rigidbody.velocity.y + 5;
+            rigidbody.velocity = velocity;
         }
 
     }
 
     private void IsGroundCheck() {
-        
-        
-        if(Physics.Linecast(rayStart.position, (rayStart.position - transform.up * rayRange))) {
+
+
+        if (Physics.Linecast(rayStart.position, (rayStart.position - transform.up * rayRange))) {
             isGround = true;
         }
         else {
@@ -165,7 +178,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void ChangePlayerMode(PlayerModeState newState) {
-        if(playerModeState != null) {
+        if (playerModeState != null) {
             //ステート終了時の動作を開始
             playerModeState.Exsit();
         }
@@ -177,39 +190,34 @@ public class PlayerController : MonoBehaviour {
 
     private void CatchObject() {
         if (Input.GetKey(KeyCode.LeftShift)) {
-            if(hitPlayerObject != null) {
+            if (hitPlayerObject != null) {
+                hitPlayerObject.GetComponent<Rigidbody>().useGravity = false;
                 hitPlayerObject.transform.parent = this.transform;
             }
         }
         else {
             if (hitPlayerObject != null) {
+                hitPlayerObject.GetComponent<Rigidbody>().useGravity = true;
                 hitPlayerObject.transform.parent = null;
             }
         }
     }
-    private void OnTriggerEnter(Collider other) {
-        if(other.tag == "") {
-            if(hitPlayerObject == null) {
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.transform.tag == "CarryObject") {
+            if (hitPlayerObject == null) {
                 hitPlayerObject = other.gameObject;
             }
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if(hitPlayerObject == other) {
+
+    private void OnCollisionExit(Collision other) {
+        if (hitPlayerObject == other.gameObject) {
             hitPlayerObject = null;
         }
     }
 
 
-    // AssistFairy の追従設定
-    private void UpdateFairyPosi()
-    {
-        fairyPosi = transform.position;
-        fairyPosi.x += distanceX;
-        fairyPosi.y += distanceY;
-        fairyPosi.z += distanceZ;
-
-        fairy.transform.position = fairyPosi;
-    }
+   
 }
