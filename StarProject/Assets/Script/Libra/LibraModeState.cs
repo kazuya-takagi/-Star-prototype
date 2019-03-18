@@ -22,7 +22,7 @@ public class LibraModeState : PlayerModeState {
     public override void ActionButton()
     {
         //fairyBody.GetComponent<Rigidbody>().useGravity = true;
-        playerController.fairy.GetComponent<Rigidbody>().useGravity = true;
+        //playerController.fairy.GetComponent<Rigidbody>().useGravity = true;
     }
 
     public override void ActionButtonDown()
