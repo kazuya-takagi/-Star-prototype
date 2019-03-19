@@ -9,6 +9,10 @@ public class ScaleRotate : MonoBehaviour {
     public float scaleRotZ;
     public float scaleRot;
     private float angleZ;
+
+    public Quaternion from;
+    public Quaternion to;
+    float t = 0;
     
 	// Use this for initialization
 	void Start () {
@@ -17,8 +21,17 @@ public class ScaleRotate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        angleZ = Mathf.Clamp(transform.rotation.z, rotMin, rotMax);
-        //scaleRot = new Vector3(0, 0, Mathf.Clamp(scaleRotZ, rotMin, rotMax));
-        transform.eulerAngles = new Vector3 (0, 0, angleZ);
-	}
+        float rot = transform.localEulerAngles.z;
+        
+        if (rot >  rotMin && rot < 180) {
+            // angleZ = Mathf.Clamp(transform.rotation.z, rotMin, rotMax);
+            //scaleRot = new Vector3(0, 0, Mathf.Clamp(scaleRotZ, rotMin, rotMax));
+            transform.localEulerAngles = new Vector3(0, 0, rotMin);
+           
+        }
+        else if(rot <  rotMax && rot > 180){
+            transform.localEulerAngles = new Vector3(0, 0, rotMax);
+           
+        }
+    }
 }

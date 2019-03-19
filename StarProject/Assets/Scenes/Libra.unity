@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -838,10 +838,10 @@ Rigidbody:
   m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 62
   m_CollisionDetection: 0
 --- !u!65 &1948971589
 BoxCollider:
@@ -918,15 +918,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1948971587}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2493b3bc1d5f5b143a086dc042d7a926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotMin: 0
-  rotMax: 360
+  rotMin: 20
+  rotMax: 340
   scaleRotZ: 0
   scaleRot: 0
+  from: {x: 0, y: 0, z: 0, w: 0}
+  to: {x: 90, y: 90, z: 90, w: 90}
 --- !u!4 &2089453458 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4059388870004034, guid: 73ef1557cb433344b93ac132a792329d,
